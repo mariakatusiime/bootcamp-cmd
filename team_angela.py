@@ -13,15 +13,23 @@ class User:
         user['role'] = self.role
         self.users.append(user)
         print('User {} successfully added'.format(self.username))
+        print('Logging you in...')
+        self.login(self.username, self.password)
 
-    def login(self, username, password):
-
-        for user in self.users:
+    @classmethod
+    def login(cls, username, password):
+        found_user = False
+        user_data = {}
+        for user in cls.users:
             if user['username'] == username and user['password'] == password:
-                print("{} has been logged in.".format(username))
-                return True
-            return False
+                print("{} has been logged in".format(username))
+                print("########## ", user)
+                user_data = user
+                found_user = True
+            found_user = False
             
+        if found_user:
+            return {'role':user_data.get('role'), 'username':user_data.get('username')}
 
     def view_scores(self):
         if self.role == "lf":
