@@ -1,5 +1,6 @@
 class User:
     users =[]
+    scores =[]
     def __init__(self,role,username,password):
         self.role = role
         self.password = password
@@ -13,6 +14,13 @@ class User:
         self.users.append(user)
         print('User {} successfully added'.format(self.username))
 
+    def login(self):
+
+        for user in self.users:
+            if user['username'] == self.username and user['password'] == self.password:
+                return True
+            return False
+            
 
     def view_scores(self):
         if self.role == "lf":

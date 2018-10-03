@@ -7,6 +7,7 @@ def main():
 
     user = User(role,username,password)
     user.add_user()
+    # user.login()
 
 if __name__ == '__main__':
     main()
